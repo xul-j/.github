@@ -17,10 +17,18 @@ of small operations. A server, an MQTT device or an **unmodified desktop applica
 
 | | |
 |---|---|
-| [**xul-j**](https://github.com/xul-j/xul-j) | The protocol (JSON Schema), browser renderer, SSE server with resume, MQTT transport (the UI as retained topics), terminal renderer, demos and end-to-end tests. Node, no framework. |
+| [**xul-j**](https://github.com/xul-j/xul-j) | The protocol (JSON Schema), browser renderer, SSE server with resume, MQTT transport (the UI as retained topics), terminal renderer, an **MCP server for AI agents**, demos and end-to-end tests. Node, no framework. |
 | [**net-bridge**](https://github.com/xul-j/net-bridge) | Serves unmodified **.NET WinForms** apps to browsers, one instance per session. Infers flex layout from `Dock`/`Anchor`, maps real menus, and shows `MessageBox` and file dialogs in the browser. [Docs](https://xul-j.github.io/net-bridge/) |
 | [**java-bridge**](https://github.com/xul-j/java-bridge) | The same for **Java Swing**: layout managers, `JOptionPane`, `JFileChooser`, real menus, trapped `System.exit`. JDK only, Java 8+. [Docs](https://xul-j.github.io/java-bridge/) |
 | [**xul-j.github.io**](https://github.com/xul-j/xul-j.github.io) | The project site, an in-browser demo, and a generator where a model of your choice (OpenRouter, your own key) streams a UI and then acts as its backend. |
+
+## AI agents, without screenshots
+
+A XUL-J stream is a labelled tree with explicit commands and state, which is exactly what an agent
+needs. The MCP server in [xul-j](https://github.com/xul-j/xul-j#mcp-let-ai-agents-operate-any-xul-j-interface)
+gives any MCP client tools to read the screen, fill fields, run commands, work with tables and
+right-click menus, answer dialogs and move files. Put it in front of a bridge, and a legacy
+WinForms or Swing app becomes something an agent can operate reliably.
 
 ## Ideas borrowed from XUL
 
@@ -28,12 +36,13 @@ of small operations. A server, an MQTT device or an **unmodified desktop applica
 - **Commands:** intents separate from widgets. Disable one command, and its button, menu item and shortcut follow.
 - **Broadcasters:** named values that attributes observe (`"observes": {"disabled": "busy"}`).
 - **Boxes and flex:** a half-streamed layout still looks reasonable, and `pending` placeholders hold space.
+- **Themes as tokens:** colours, radius, density and font, never CSS; the viewer's dark mode and contrast needs win.
 - **Data apart from structure:** declare a tree once and stream rows into it (100k rows ≈ 30 DOM nodes).
 
 ## Status
 
 A working prototype with end-to-end tests for every transport and bridge, not a finished product.
-The bridges are tested on Linux (Mono's WinForms, OpenJDK Swing); Windows testing, context menus,
-grid selection and authentication are next. Issues, ideas and pull requests are welcome.
+The bridges are tested on Linux (Mono's WinForms, OpenJDK Swing); Windows testing, cell editing,
+a painted fallback for custom controls and authentication are next. Issues, ideas and pull requests are welcome.
 
 All repositories are MIT licensed.
